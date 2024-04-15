@@ -1,105 +1,54 @@
+const app = getApp();
 Component({
+  /**
+   * 组件的一些选项
+   */
   options: {
-    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+    addGlobalClass: true,
+    multipleSlots: true
   },
   /**
-   * 组件的属性列表
+   * 组件的对外属性
    */
   properties: {
-    extClass: {
+    bgColor: {
       type: String,
-      value: ''
+      default: ''
+    }, 
+    isCustom: {
+      type: [Boolean, String],
+      default: false
     },
-    title: {
+    isBack: {
+      type: [Boolean, String],
+      default: false
+    },
+    bgImage: {
       type: String,
-      value: ''
-    },
-    background: {
-      type: String,
-      value: ''
-    },
-    color: {
-      type: String,
-      value: ''
-    },
-    back: {
-      type: Boolean,
-      value: true
-    },
-    loading: {
-      type: Boolean,
-      value: false
-    },
-    homeButton: {
-      type: Boolean,
-      value: false,
-    },
-    animated: {
-      // 显示隐藏的时候opacity动画效果
-      type: Boolean,
-      value: true
-    },
-    show: {
-      // 显示隐藏导航，隐藏的时候navigation-bar的高度占位还在
-      type: Boolean,
-      value: true,
-      observer: '_showChange'
-    },
-    // back为true的时候，返回的页面深度
-    delta: {
-      type: Number,
-      value: 1
+      default: ''
     },
   },
   /**
    * 组件的初始数据
    */
   data: {
-    displayStyle: ''
-  },
-  lifetimes: {
-    attached() {
-      const rect = wx.getMenuButtonBoundingClientRect()
-      wx.getSystemInfo({
-        success: (res) => {
-          const isAndroid = res.platform === 'android'
-          const isDevtools = res.platform === 'devtools'
-          this.setData({
-            ios: !isAndroid,
-            innerPaddingRight: `padding-right: ${res.windowWidth - rect.left}px`,
-            leftWidth: `width: ${res.windowWidth - rect.left }px`,
-            safeAreaTop: isDevtools || isAndroid ? `height: calc(var(--height) + ${res.safeArea.top}px); padding-top: ${res.safeArea.top}px` : ``
-          })
-        }
-      })
-    },
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    _showChange(show: boolean) {
-      const animated = this.data.animated
-      let displayStyle = ''
-      if (animated) {
-        displayStyle = `opacity: ${
-          show ? '1' : '0'
-        };transition:opacity 0.5s;`
-      } else {
-        displayStyle = `display: ${show ? '' : 'none'}`
-      }
-      this.setData({
-        displayStyle
-      })
+    BackPage() {
+      wx.navigateBack({
+        delta: 1
+      });
     },
-    back() {
-      const data = this.data
-      if (data.delta) {
-        wx.navigateBack({
-          delta: data.delta
-        })
-      }
-      this.triggerEvent('back', { delta: data.delta }, {})
+    toHome(){
+      wx.reLaunch({
+        url: '/pages/index/index',
+      })
     }
-  },
+  }
 })

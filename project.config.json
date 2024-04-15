@@ -28,7 +28,8 @@
     "compileHotReLoad": false,
     "skylineRenderEnable": true,
     "es6": true,
-    "uglifyFileName": true
+    "uglifyFileName": true,
+    "condition": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
