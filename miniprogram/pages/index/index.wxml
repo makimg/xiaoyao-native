@@ -1,8 +1,8 @@
-
+<page-meta page-style="{{ modalShow ? 'overflow: hidden;' : '' }}" />
 
 <view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
-	<navigation-bar bgColor="bg-gradual-blue" isCustomPlus="{{true}}" bindshowModal="onChangeModal">
-		<view slot="plus">
+	<navigation-bar bgColor="bg-gradual-blue" isCustomPlus="{{true}}">
+		<view slot="plus" bindtap="showModal" data-value="viewModal">
 			<van-icon name="apps-o" size="24px" color="#FFFFFF" />
 		</view>
 	</navigation-bar>
@@ -19,10 +19,64 @@
 </view>
 <view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
 	<view class="index_hide_wrap" style="padding-top: {{StatusBar}}px;">
-		<view class="index_hide_main">
-			<block wx:for="{{20}}" wx:key="index">
-				<view>嘿嘿嘿</view>
-			</block>
+		<view class="wrap_main">
+			<view class="wrap_head">
+				<view class="wrap_head_info flex-row-start-center">
+					<view class="wrap_info_avatar flex-row-center-center">
+						<van-icon name="contact-o" size="20px" color="#f8f8f8" />
+					</view>
+					<view class="wrap_info_text flex1">
+						<view class="text_item flex-row-start-end">
+							<text class="txt name">张三丰</text>
+							<text class="txt">自由级</text>
+						</view>
+						<view class="text_item flex-row-start-end">
+							<text class="txt">嘿嘿嘿</text>
+							<text class="txt">哈哈哈</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="cu-list menu card-menu shadow-lg radius">
+				<view class="cu-item arrow">
+					<view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+						<text class="cuIcon-github text-grey"></text>
+						<text class="text-grey">GitHub</text>
+					</view>
+				</view>
+				<view class="cu-item arrow">
+					<navigator class="content" url="/pages/about/about/about" hover-class="none">
+						<image src="/images/logo.png" class="png" mode="aspectFit"></image>
+						<text class="text-grey">关于ColorUI组件库</text>
+					</navigator>
+				</view>
+				<view class="cu-item arrow">
+					<navigator class="content" url="/pages/about/log/log" hover-class="none">
+						<text class="cuIcon-formfill text-green"></text>
+						<text class="text-grey">日志</text>
+					</navigator>
+				</view>
+				<view class="cu-item arrow">
+					<view class="content" bindtap="showQrcode">
+						<text class="cuIcon-appreciatefill text-red"></text>
+						<text class="text-grey">赞赏支持</text>
+					</view>
+				</view>
+				<view class="cu-item arrow">
+					<button class="cu-btn content" open-type="feedback">
+						<text class="cuIcon-writefill text-cyan"></text>
+						<text class="text-grey">意见反馈</text>
+					</button>
+				</view>
+				<view class="cu-item arrow">
+					<navigator class="content" url="/pages/about/test/list" hover-class="none">
+						<text class="cuIcon-creativefill text-orange"></text>
+						<text class="text-grey">Bug测试</text>
+					</navigator>
+				</view>
+			</view>
 		</view>
 	</view>
 </view>
+
+<get-info-modal bindonChangeModalFlag="modalFlagChange"></get-info-modal>

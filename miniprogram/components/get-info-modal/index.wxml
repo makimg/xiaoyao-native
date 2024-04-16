@@ -1,0 +1,15 @@
+
+
+
+<van-popup
+	round
+  show="{{_modal}}"
+  position="bottom"
+  custom-style="height: 20%;"
+  bind:close="_onCloseModal">
+	<view class="">
+		<view class="">
+			
+		</view>
+	</view>
+</van-popup>

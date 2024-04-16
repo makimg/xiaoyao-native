@@ -10,14 +10,15 @@ Page({
   data: {
     modalName: "",
     StatusBar,
-    CustomBar
+    CustomBar,
+    modalShow: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    showToast("哈哈","none",1500);
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -32,21 +33,21 @@ Page({
     console.log(opts.target)
     return {}
   },
-  showModal(event: { currentTarget: { dataset: { target: any; }; }; }) {
+  // 监听上传用户资料弹框滚动穿透
+  modalFlagChange(event: { detail: { modalShow: any; }; }){
     let that = this;
-    that.setData({
-      modalName: event.currentTarget.dataset.target
-    })
+    let {modalShow} = event.detail;
+    that.setData({modalShow})
   },
-  onChangeModal(event: any){
+  // 打开隐藏魔盒
+  showModal(event: { currentTarget: { dataset: { value: any; }; }; }) {
     let that = this;
-    let {value} = event.detail;
+    let {value} = event.currentTarget.dataset;
     that.setData({modalName:value})
   },
+  // 关闭隐藏魔盒
   hideModal() {
     let that = this;
-    that.setData({
-      modalName: null
-    })
+    that.setData({modalName: ""})
   },
 })

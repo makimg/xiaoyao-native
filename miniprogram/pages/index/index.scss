@@ -7,41 +7,84 @@ page {
 .DrawerPage {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   left: 0vw;
   background-color: #f1f1f1;
   transition: all 0.4s;
-}
-
-.DrawerPage.show {
-  transform: scale(0.9, 0.9);
-  left: 85vw;
-  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
-  transform-origin: 0;
+  &.show {
+    transform: scale(0.9, 0.9);
+    left: 85vw;
+    box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
+    transform-origin: 0;
+  }
 }
 
 .DrawerWindow {
   position: absolute;
   width: 85vw;
-  height: 100vh;
+  min-height: 100vh;
   left: 0;
   top: 0;
   transform: scale(0.9, 0.9) translateX(-100%);
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s;
+  &.show {
+    transform: scale(1, 1) translateX(0%);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .index_hide_wrap{
+    width: 100%;
+    padding: 30rpx 0;
+    .wrap_main{
+      width: 100%;
+      .wrap_head{
+        width: 100%;
+        padding: 0 30rpx 30rpx;
+        .wrap_head_info{
+          width: 100%;
+          .wrap_info_avatar{
+            width: 80rpx;
+            height: 80rpx;
+            border: 2rpx solid #f8f8f8;
+            border-radius: 50%;
+            background: #DDDDDD;
+          }
+          .wrap_info_text{
+            width: 100%;
+            padding: 0 20rpx;
+            .text_item{
+              width: 100%;
+              &:first-child{
+                margin-bottom: 6rpx;
+              }
+              .txt{
+                font-size: 24rpx;
+                color: #FFFFFF;
+                line-height: 36rpx;
+                &:last-child{
+                  margin-left: 12rpx;
+                }
+                &.name{
+                  font-size: 32rpx;
+                  line-height: 44rpx;
+                  color: #000000;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.DrawerWindow.show {
-  transform: scale(1, 1) translateX(0%);
-  opacity: 1;
-  pointer-events: all;
-}
-
-.DrawerClose {
+.DrawerClose{
   position: absolute;
   width: 40vw;
-  height: 100vh;
+  min-height: 100vh;
   right: 0;
   top: 0;
   color: transparent;
@@ -55,55 +98,51 @@ page {
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s;
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+    width: 15vw;
+    color: #fff;
+  }
 }
 
-.DrawerClose.show {
-  opacity: 1;
-  pointer-events: all;
-  width: 15vw;
-  color: #fff;
-}
-
-.DrawerPage .cu-bar.tabbar .action button.icon {
-  width: 64rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  margin: 0;
-  display: inline-block;
-}
-
-.DrawerPage .cu-bar.tabbar .action .cu-avatar {
-  margin: 0;
-}
-
-.DrawerPage .nav {
+.DrawerPage {
   flex: 1;
-}
-
-.DrawerPage .nav .cu-item.cur {
-  border-bottom: 0;
-  position: relative;
-}
-
-.DrawerPage .nav .cu-item.cur::after {
-  content: "";
-  width: 10rpx;
-  height: 10rpx;
-  background-color: currentColor;
-  position: absolute;
-  bottom: 10rpx;
-  border-radius: 10rpx;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.DrawerPage .cu-bar.tabbar .action {
-  flex: initial;
-}
-
-
-.index_hide_wrap{
-  width: 100%;
-  padding: 30rpx;
+  .cu-bar{
+    &.tabbar {
+      .action {
+        flex: initial;
+        button.icon {
+          width: 64rpx;
+          height: 64rpx;
+          line-height: 64rpx;
+          margin: 0;
+          display: inline-block;
+        }
+        .cu-avatar {
+          margin: 0;
+        }
+      }
+    }
+  }
+  .nav {
+    .cu-item{
+      &.cur {
+        border-bottom: 0;
+        position: relative;
+        &::after{
+          content: "";
+          width: 10rpx;
+          height: 10rpx;
+          background-color: currentColor;
+          position: absolute;
+          bottom: 10rpx;
+          border-radius: 10rpx;
+          left: 0;
+          right: 0;
+          margin: auto;
+        }
+      }
+    }
+  }
 }

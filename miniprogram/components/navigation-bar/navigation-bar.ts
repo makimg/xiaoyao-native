@@ -53,9 +53,6 @@ Component({
       wx.reLaunch({
         url: '/pages/index/index',
       })
-    },
-    showModal(){
-      this.triggerEvent("showModal",{value:"viewModal"})
     }
   }
 })
