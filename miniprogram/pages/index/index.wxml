@@ -1,5 +1,28 @@
-<!--index.wxml-->
-<navigation-bar bgColor="bg-gradual-blue" isBack="{{false}}">
-	<view slot="backText">返回</view>
-	<view slot="content">布局</view>
-</navigation-bar>
+
+
+<view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+	<navigation-bar bgColor="bg-gradual-blue" isCustomPlus="{{true}}" bindshowModal="onChangeModal">
+		<view slot="plus">
+			<van-icon name="apps-o" size="24px" color="#FFFFFF" />
+		</view>
+	</navigation-bar>
+	<view class="">
+		<view class="">
+			<block wx:for="{{20}}" wx:key="index">
+				<view>哈哈哈</view>
+			</block>
+		</view>
+	</view>
+</view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+	<text class="cuIcon-pullright"></text>
+</view>
+<view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+	<view class="index_hide_wrap" style="padding-top: {{StatusBar}}px;">
+		<view class="index_hide_main">
+			<block wx:for="{{20}}" wx:key="index">
+				<view>嘿嘿嘿</view>
+			</block>
+		</view>
+	</view>
+</view>

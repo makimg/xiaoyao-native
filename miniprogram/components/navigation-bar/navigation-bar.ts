@@ -19,6 +19,10 @@ Component({
       type: [Boolean, String],
       default: false
     },
+    isCustomPlus: {
+      type: [Boolean, String],
+      default: false
+    },
     isBack: {
       type: [Boolean, String],
       default: false
@@ -49,6 +53,9 @@ Component({
       wx.reLaunch({
         url: '/pages/index/index',
       })
+    },
+    showModal(){
+      this.triggerEvent("showModal",{value:"viewModal"})
     }
   }
 })

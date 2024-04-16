@@ -8,6 +8,10 @@
       <text class="cuIcon-back" bindtap="BackPage"></text>
       <text class="cuIcon-homefill" bindtap="toHome"></text>
     </view>
+    <view class="action"  wx:if="{{isCustomPlus}}" style="width:{{Custom.width*0.6}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+      <!-- <text class="cuIcon-cascades" style="font-size:50rpx;" bindtap="showModal"></text> -->
+      <slot name="plus"></slot>
+    </view>
     <view class="content" style="top:{{StatusBar}}px">
       <slot name="content"></slot>
     </view>
