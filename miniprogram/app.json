@@ -7,7 +7,9 @@
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
-  "style": "v2",
+  "usingComponents": {
+    "navigation-bar": "./components/navigation-bar/navigation-bar"
+  },
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,

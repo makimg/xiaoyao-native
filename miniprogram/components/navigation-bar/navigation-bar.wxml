@@ -1,64 +1,20 @@
-<view class="weui-navigation-bar {{extClass}}">
-  <view class="weui-navigation-bar__inner {{ios ? 'ios' : 'android'}}" style="color: {{color}}; background: {{background}}; {{displayStyle}}; {{innerPaddingRight}}; {{safeAreaTop}};">
-
-    <!-- 左侧按钮 -->
-    <view class='weui-navigation-bar__left' style="{{leftWidth}};">
-      <block wx:if="{{back || homeButton}}">
-        <!-- 返回上一页 -->
-        <block wx:if="{{back}}">
-          <view class="weui-navigation-bar__buttons weui-navigation-bar__buttons_goback">
-            <view
-              bindtap="back"
-              class="weui-navigation-bar__btn_goback_wrapper"
-              hover-class="weui-active"
-              hover-stay-time="100"
-              aria-role="button"
-              aria-label="返回"
-            >
-              <view class="weui-navigation-bar__button weui-navigation-bar__btn_goback"></view>
-            </view>
-          </view>
-        </block>
-        <!-- 返回首页 -->
-        <block wx:if="{{homeButton}}">
-          <view class="weui-navigation-bar__buttons weui-navigation-bar__buttons_home">
-            <view
-              bindtap="home"
-              class="weui-navigation-bar__btn_home_wrapper"
-              hover-class="weui-active"
-              aria-role="button"
-              aria-label="首页"
-            >
-              <view class="weui-navigation-bar__button weui-navigation-bar__btn_home"></view>
-            </view>
-          </view>
-        </block>
-      </block>
-      <block wx:else>
-        <slot name="left"></slot>
-      </block>
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+    <view class="action" bindtap="BackPage" wx:if="{{isBack}}">
+      <text class="cuIcon-back"></text>
+      <slot name="backText"></slot>
     </view>
-
-    <!-- 标题 -->
-    <view class='weui-navigation-bar__center'>
-      <view wx:if="{{loading}}" class="weui-navigation-bar__loading" aria-role="alert">
-        <view
-          class="weui-loading"
-          aria-role="img"
-          aria-label="加载中"
-        ></view>
-      </view>
-      <block wx:if="{{title}}">
-        <text>{{title}}</text>
-      </block>
-      <block wx:else>
-        <slot name="center"></slot>
-      </block>
+    <view class="action border-custom"  wx:if="{{isCustom}}" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+      <text class="cuIcon-back" bindtap="BackPage"></text>
+      <text class="cuIcon-homefill" bindtap="toHome"></text>
     </view>
-    
-    <!-- 右侧留空 -->
-    <view class='weui-navigation-bar__right'>
-      <slot name="right"></slot>
+    <view class="action"  wx:if="{{isCustomPlus}}" style="width:{{Custom.width*0.6}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+      <!-- <text class="cuIcon-cascades" style="font-size:50rpx;" bindtap="showModal"></text> -->
+      <slot name="plus"></slot>
     </view>
+    <view class="content" style="top:{{StatusBar}}px">
+      <slot name="content"></slot>
+    </view>
+    <slot name="right"></slot>
   </view>
 </view>

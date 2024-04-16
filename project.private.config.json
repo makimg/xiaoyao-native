@@ -5,5 +5,6 @@
     "compileHotReLoad": false,
     "urlCheck": false,
     "lazyloadPlaceholderEnable": true
-  }
+  },
+  "libVersion": "3.4.0"
 }
